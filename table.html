@@ -2,7 +2,8 @@
 <html>
 <head>
 <title>Shri Rabi narayan </title>
-<style>body{
+<style>
+body{
 background:#f4f4f4;
 }
 .wrapper{
@@ -11,7 +12,7 @@ background:#f4f4f4;
 }
 table tr td{
 	padding:10px;
-	min-width:100px;
+	/* min-width:100px; */
 }
 h3{
 	text-align:center;
@@ -22,12 +23,13 @@ h4{
 	font-weight:normal;
 }
 table tr td:first-child(){
-	width:60px;
+	width:80px;
 }
 #amntalign{
-	display:flex; flex-direction: row; justify-content: center; align-items: center;
+	display:flex; flex-wrap: nowrap;
 	
 }
+
 p{
 	text-align:right;
 }
@@ -35,7 +37,7 @@ input,input:hover,input:focus,input:focus-visible
 {
 	background:#f4f4f4;
 	border:0;
-	width:98%;
+	width:80%;
 	color:#333;
 	
     outline: -webkit-focus-ring-color auto 0px;
@@ -49,6 +51,7 @@ input,input:hover,input:focus,input:focus-visible
 		$scope.b1=0
 		$scope.c1=0
 		$scope.d1=0
+		$scope.e1=0
 
 		// add all rows of bit 1
 		$scope.addOne = () =>{
@@ -84,6 +87,7 @@ input,input:hover,input:focus,input:focus-visible
 		// get number 3, 1d-2h
 		$scope.getThree = () =>{
 			$scope.three = $scope.d1 - $scope.h2
+			return $scope.three
 		}
 
 		$scope.a_4=0
@@ -97,16 +101,150 @@ input,input:hover,input:focus,input:focus-visible
 		} 
 		$scope.g2=0
 
-		//$scope._3 = 
+		// get number 6, 3 + 1(e) -5
+		$scope.getSix = () =>{
+			$scope.six = $scope.getThree() + $scope.e1 - $scope.getFive()
+			return $scope.six
+		}
 
+		$scope.a7 = 0
+		$scope.b7 = 0
 
+		// get number 8, 7(a) + 7(b)
+		$scope.getEight = () =>{
+			$scope.eight = $scope.a7 + $scope.b7
+			return $scope.eight
+		}
 		
-		
+		// get number 9, 6+8
+		$scope.getNine = () =>{
+			$scope.nine = $scope.getSix() + $scope.getEight()
+			return $scope.nine
+		}
 
+		$scope.aG10=0
+		$scope.aD10=0
+
+		$scope.bG10=0
+		$scope.bD10=0
+
+		$scope.cG10=0
+		$scope.cD10=0
+
+		$scope.dG10=0
+		$scope.dD10=0
+
+		$scope.eG10=0
+		$scope.eD10=0
+
+		$scope.fG10=0
+		$scope.fD10=0
+
+		$scope.gG10=0
+		$scope.gD10=0
+
+		$scope.hG10=0
+		$scope.hD10=0
+
+		$scope.iG10=0
+		$scope.iQ10=0
+		$scope.iD10=0
+
+		$scope.jG10=0
+		$scope.jQ10=0
+		$scope.jD10=0
+
+		$scope.k1_G10=0
+		$scope.k1_Q10=0
+		$scope.k1_D10=0
 		
+		$scope.k2_G10=0
+		$scope.k2_Q10=0
+		$scope.k2_D10=0
+		
+		$scope.k3_G10=0
+		$scope.k3_Q10=0
+		$scope.k3_D10=0
+		
+		$scope.k4_G10=0
+		$scope.k4_Q10=0
+		$scope.k4_D10=0
+		
+		$scope.k5_G10=0
+		$scope.k5_Q10=0
+		$scope.k5_D10=0
+		
+		$scope.k6_G10=0
+		$scope.k6_Q10=0
+		$scope.k6_D10=0
+		
+		$scope.k7_G10=0
+		$scope.k7_Q10=0
+		$scope.k7_D10=0
+		
+		$scope.lG10=0
+		$scope.lQ10=0
+		$scope.lD10=0
+
+		// add all bits of 10 k for deductible only, this is gor 
+		$scope.allD10k= () =>{
+			$scope.lD10 = $scope.k1_D10 + $scope.k2_D10 + $scope.k3_D10 + $scope.k4_D10 + $scope.k5_D10 
+			+ $scope.k6_D10 + $scope.k7_D10
+			return $scope.lD10
+		}
+
+		// get number 11, 10(a) + 10(b) + 10(c) + 10(d) + 10(e) + 10(f) + 10(g) + 10(h) + 10(i) + 10(j) + 10(l)
+		$scope.getEleven = () => {
+			$scope.eleven = $scope.aD10 + $scope.bD10 + $scope.cD10 + $scope.dD10 
+			+ $scope.eD10 + $scope.fD10 + $scope.gD10 + $scope.hD10 + $scope.iD10
+			+ $scope.jD10 + $scope.lD10
+			return $scope.eleven
+		} 
+
+		// get number 12, 9 -11
+		$scope.getTwelve = () =>{
+			$scope.twelve = $scope.nine - $scope.eleven
+			return $scope.twelve
+		}
+
+		// number 13, tax calculation
+		$scope.getTax = () =>{
+			$scope.taxAmount=0
+			if ($scope.twelve < 250000)
+				$scope.taxAmount = 0
+			else if($scope.twelve > 250000 && $scope.twelve < 500000)
+				$scope.taxAmount = 0.05 * ($scope.twelve - 250000)
+			else if($scope.twelve > 500000 && $scope.twelve < 750000)
+				$scope.taxAmount = 12500 + 0.10 * ($scope.twelve - 500000)
+			else if($scope.twelve > 750000 && $scope.twelve < 1000000)
+				$scope.taxAmount = 37500 + 0.15 * ($scope.twelve - 750000)
+			else if($scope.twelve > 1000000 && $scope.twelve < 1250000)
+				$scope.taxAmount = 75000 + 0.20 * ($scope.twelve - 1000000)
+			else if($scope.twelve > 1250000 && $scope.twelve < 1500000)
+				$scope.taxAmount = 125000 + 0.25 * ($scope.twelve - 1250000)
+			else
+				$scope.taxAmount = 187500 + 0.30 * ($scope.twelve - 1500000)
+			return $scope.taxAmount
+		}
+
+		$scope.fourteen = 0
+		$scope.fifteen = 0
+		$scope.sixteen = 0
+
+		// get number 17, 13+15+16-14
+		$scope.getSeventeen = () =>{
+			$scope.seventeen = $scope.taxAmount + $scope.fourteen + $scope.fifteen + $scope.sixteen
+			return $scope.seventeen 
+		} 
+
+		$scope.eighteen = 0 
+
+		// get number 19, 17-18
+		$scope.getNineteen = () =>{
+			$scope.nineteen = $scope.seventeen - $scope.eighteen
+			return $scope.nineteen
+		} 
 	})
-
-
 </script>
 
 
@@ -306,7 +444,7 @@ input,input:hover,input:focus,input:focus-visible
 <td>Income chargeable under the head "Salaries" [(3+1(e)-5]</td>
 <td></td>
 <td></td>
-<td id="amntalign">Rs. <input type="text" value=""/> </td>
+<td id="amntalign">Rs. <input type="text" ng-model="six" value="{{getSix()}}"/> </td>
 </tr>
 <tr>
 <td>7.</td>
@@ -316,14 +454,14 @@ input,input:hover,input:focus,input:focus-visible
 <td>(a)</td>
 <td>Income (or admissible loss) from house property reported by employee offered for TDD</td>
 <td></td>
-<td id="amntalign">Rs. <input type="text" value=""/> </td>
+<td id="amntalign">Rs. <input type="Number" ng-model="a7" value=""/> </td>
 <td></td>
 </tr>
 <tr>
 <td>(b)</td>
 <td>Income under the head Other Sources offered for TDS</td>
 <td></td>
-<td id="amntalign">Rs. <input type="text" value=""/> </td>
+<td id="amntalign">Rs. <input type="Number" ng-model="b7" value=""/> </td>
 <td></td>
 </tr>
 <tr>
@@ -331,97 +469,101 @@ input,input:hover,input:focus,input:focus-visible
 <td>Total amount of other income reported by the employee [7(a)+7(b)]</td>
 <td></td>
 <td></td>
-<td id="amntalign">Rs. <input type="text" value=""/> </td>
+<td id="amntalign">Rs. <input type="text" value="{{getEight()}}"/> </td>
 </tr>
 <tr>
 <td>9.</td>
 <td>Gross total income (6+8)</td>
 <td></td>
 <td></td>
-<td id="amntalign">Rs. <input type="text" value=""/> </td>
+<td id="amntalign">Rs. <input type="text" value="{{getNine()}}"/> </td>
 </tr>
+
 <tr>
 <td>10.</td>
-<td>Deductions under Chapter VI-A</td>
-<td></td>
-<td></td>
-<td id="amntalign">Rs. <input type="text" value=""/> </td>
+<td colspan="4">Deductions under Chapter VI-A</td>
 </tr>
+
 <tr>
 <td colspan="3"></td>
-<td>Gross
-Amounts</td>
-<td>Deductible
-Amount
-</td>
+<td>Gross Amounts</td>
+<td>Deductible Amount</td>
 </tr>
+
 <tr>
 <td>(a)</td>
 <td>Deduction in respect of life insurance premia, contributions to
 provident fund etc. under section 80C</td>
 <td></td>
-<td>Rs. 110000</td>
-<td>Rs. 150000</td>
+<td >Rs.<input  type="Number" ng-model="aG10" value="150000"/> </td>
+<td >Rs.<input type="Number" ng-model="aD10" value="150000"/></td>
 </tr>
+
 <tr>
 <td>(b)</td>
 <td>Deduction in respect of contribution to certain pension funds
 under section 80CCC</td>
 <td></td>
-<td>Rs. </td>
-<td>Rs. </td>
+<td >Rs.<input  type="Number" ng-model="bG10" value="150000"/> </td>
+<td >Rs.<input type="Number" ng-model="bD10" value="150000"/></td>
 </tr>
+
 <tr>
 <td>(c)</td>
 <td>Deduction in respect of contribution by taxpayer to pension
 scheme under section 80CCD (1)
 </td>
 <td></td>
-<td>Rs. </td>
-<td>Rs. </td>
+<td >Rs.<input  type="Number" ng-model="cG10" value="150000"/> </td>
+<td >Rs.<input type="Number" ng-model="cD10" value="150000"/></td>
 </tr>
+
 <tr>
 <td>(d)</td>
 <td>Total deduction under section 80C, 80CCC and 80CCD(1)</td>
 <td></td>
-<td>Rs. </td>
-<td>Rs. </td>
+<td >Rs.<input  type="Number" ng-model="dG10" value="150000"/> </td>
+<td >Rs.<input type="Number" ng-model="dD10" value="150000"/></td>
 </tr>
+
 <tr>
 <td>(e)</td>
 <td>Deductions in respect of amount paid/deposited to notified
 pension scheme under section 80CCD (IB)
 </td>
 <td></td>
-<td>Rs. </td>
-<td>Rs. </td>
+<td >Rs.<input  type="Number" ng-model="eG10" value="150000"/> </td>
+<td >Rs.<input type="Number" ng-model="eD10" value="150000"/></td>
 </tr>
+
 <tr>
 <td>(f)</td>
 <td>Deduction in respect of contribution by Employer to pension
 scheme under section 80CCD (2)
 </td>
 <td></td>
-<td>Rs. </td>
-<td>Rs. </td>
+<td >Rs.<input  type="Number" ng-model="fG10" value="150000"/> </td>
+<td >Rs.<input type="Number" ng-model="fD10" value="150000"/></td>
 </tr>
+
 <tr>
 <td>(g)</td>
 <td>Deduction in respect of health insurance premia under section
 80D
 </td>
 <td></td>
-<td>Rs. </td>
-<td>Rs. </td>
+<td >Rs.<input  type="Number" ng-model="gG10" value="150000"/> </td>
+<td >Rs.<input type="Number" ng-model="gD10" value="150000"/></td>
 </tr>
+
 <tr>
 <td>(h)</td>
 <td>Deduction in respect of interest on loan taken for higher education
 under section 80E
 </td>
 <td></td>
-<td>Rs. </td>
-<td>Rs. </td>
+<td >Rs.<input  type="Number" ng-model="hG10" value="150000"/> </td>
+<td >Rs.<input type="Number" ng-model="hD10" value="150000"/></td>
 </tr>
 
 <tr>
@@ -432,98 +574,104 @@ under section 80E
 <td>Qualifying Amount</td>
 <td>Deductible Amount</td>
 </tr>
+
 <tr>
 <td>(i)</td>
 <td>Total Deduction in respect of donations to certain funds,
 charitable institutions, etc. under section 80G
 </td>
-<td>Rs.</td>
-<td>Rs. </td>
-<td>Rs. </td>
+<td >Rs.<input  type="Number" ng-model="iG10" value="150000"/> </td>
+<td >Rs.<input type="Number" ng-model="iQ10" value="150000"/></td>
+<td >Rs.<input type="Number" ng-model="iD10" value="150000"/></td>
 </tr>
+
 <tr>
 <td>(j)</td>
 <td>Deduction in respect of interest on deposits in savings account
 under section 80TTA
 </td>
-<td>Rs.</td>
-<td>Rs. </td>
-<td>Rs. </td>
+<td >Rs.<input  type="Number" ng-model="jG10" value="150000"/> </td>
+<td >Rs.<input type="Number" ng-model="jQ10" value="150000"/></td>
+<td >Rs.<input type="Number" ng-model="jD10" value="150000"/></td>
 </tr>
+
 <tr>
 <td>(k)</td>
-<td>Amount deductible under any other provision(s) of Chapter VISA
-</td>
-<td>Rs.</td>
-<td>Rs. </td>
-<td>Rs. </td>
+<td colspan="4">Amount deductible under any other provision(s) of Chapter VISA</td>
 </tr>
+
 <tr>
 <td></td>
 <td>Section-24(b)
 </td>
-<td>Rs.</td>
-<td>Rs. </td>
-<td>Rs. </td>
+<td >Rs.<input  type="Number" ng-model="k1_G10" value="150000"/> </td>
+<td >Rs.<input type="Number" ng-model="k1_Q10" value="150000"/></td>
+<td >Rs.<input type="Number" ng-model="k1_D10" value="150000"/></td>
 </tr>
+
 <tr>
 <td></td>
 <td>Section -80-U
 </td>
-<td>Rs.</td>
-<td>Rs. </td>
-<td>Rs. </td>
+<td >Rs.<input  type="Number" ng-model="k2_G10" value="150000"/> </td>
+<td >Rs.<input type="Number" ng-model="k2_Q10" value="150000"/></td>
+<td >Rs.<input type="Number" ng-model="k2_D10" value="150000"/></td>
 </tr>
 
 <tr>
 <td></td>
 <td>section .. . gp
 </td>
-<td>Rs.</td>
-<td>Rs. </td>
-<td>Rs. </td>
+<td >Rs.<input  type="Number" ng-model="k3_G10" value="150000"/> </td>
+<td >Rs.<input type="Number" ng-model="k3_Q10" value="150000"/></td>
+<td >Rs.<input type="Number" ng-model="k3_D10" value="150000"/></td>
 </tr>
+
 <tr>
 <td></td>
 <td>section .. . gp
 </td>
-<td>Rs.</td>
-<td>Rs. </td>
-<td>Rs. </td>
+<td >Rs.<input  type="Number" ng-model="k4_G10" value="150000"/> </td>
+<td >Rs.<input type="Number" ng-model="k4_Q10" value="150000"/></td>
+<td >Rs.<input type="Number" ng-model="k4_D10" value="150000"/></td>
 </tr>
+
 <tr>
 <td></td>
 <td>section .. . gp
 </td>
-<td>Rs.</td>
-<td>Rs. </td>
-<td>Rs. </td>
+<td >Rs.<input  type="Number" ng-model="k5_G10" value="150000"/> </td>
+<td >Rs.<input type="Number" ng-model="k5_Q10" value="150000"/></td>
+<td >Rs.<input type="Number" ng-model="k5_D10" value="150000"/></td>
 </tr>
+
 <tr>
 <td></td>
 <td>section .. . gp
 </td>
-<td>Rs.</td>
-<td>Rs. </td>
-<td>Rs. </td>
+<td >Rs.<input  type="Number" ng-model="k6_G10" value="150000"/> </td>
+<td >Rs.<input type="Number" ng-model="k6_Q10" value="150000"/></td>
+<td >Rs.<input type="Number" ng-model="k6_D10" value="150000"/></td>
 </tr>
+
 <tr>
 <td></td>
 <td>
 </td>
-<td>Rs.</td>
-<td>Rs. </td>
-<td>Rs. </td>
+<td >Rs.<input  type="Number" ng-model="k7_G10" value="150000"/> </td>
+<td >Rs.<input type="Number" ng-model="k7_Q10" value="150000"/></td>
+<td >Rs.<input type="Number" ng-model="k7_D10" value="150000"/></td>
 </tr>
+
 <tr>
 <td>(l)</td>
-<td>Total of amount deductible under any other provision(s) of
+<td colspan="3">Total of amount deductible under any other provision(s) of
 Chapter VISA
 </td>
-<td>Rs.</td>
-<td>Rs. </td>
-<td>Rs. </td>
+
+<td >Rs.<input type="Number" ng-model="lD10" value="{{allD10k()}}"/></td>
 </tr>
+
 <tr>
 <td>11.</td>
 <td>Aggregate of deductible amount under Chapter VI-A
@@ -531,23 +679,25 @@ Chapter VISA
 </td>
 <td></td>
 <td></td>
-<td>	Rs. 150000 </td>
+<td>	Rs.<input type="Number" ng-model="eleven" value="{{getEleven()}}"/></td>
 </tr>
+
 <tr>
 <td>12.</td>
 <td>Total taxable income (9-11)
 </td>
 <td></td>
 <td> </td>
-<td>Rs. 300020 </td>
+<td>Rs.  <input type="Number" ng-model="twelve" value="{{getTwelve()}}"/> </td>
 </tr>
+
 <tr>
 <td>13.</td>
 <td>Tax on total income
 </td>
 <td></td>
 <td> </td>
-<td>Rs. 2501  </td>
+<td>Rs. <input type="Number" ng-model="taxAmount" value="{{getTax()}}"/></td>
 </tr>
 <tr>
 <td>14.</td>
@@ -555,7 +705,7 @@ Chapter VISA
 </td>
 <td></td>
 <td> </td>
-<td>Rs. 12500a  </td>
+<td>Rs. <input type="Number" ng-model="fourteen" value=""/></td>
 </tr>
 <tr>
 <td>15.</td>
@@ -563,7 +713,7 @@ Chapter VISA
 </td>
 <td></td>
 <td> </td>
-<td>Rs.   </td>
+<td>Rs.  <input type="Number" ng-model="fifteen" value=""/> </td>
 </tr>
 <tr>
 <td>16.</td>
@@ -571,7 +721,7 @@ Chapter VISA
 </td>
 <td></td>
 <td> </td>
-<td>Rs.   </td>
+<td>Rs.   <input type="Number" ng-model="sixteen" value=""/></td>
 </tr>
 <tr>
 <td>17.</td>
@@ -579,7 +729,7 @@ Chapter VISA
 </td>
 <td></td>
 <td> </td>
-<td>Rs.   </td>
+<td>Rs.   <input type="Number" ng-model="seventeen" value="{{getSeventeen()}}"/></td>
 </tr>
 <tr>
 <td>18.</td>
@@ -587,7 +737,7 @@ Chapter VISA
 </td>
 <td></td>
 <td> </td>
-<td>Rs.   </td>
+<td>Rs.   <input type="Number" ng-model="eighteen" value=""/></td>
 </tr>
 <tr>
 <td>19.</td>
@@ -595,7 +745,7 @@ Chapter VISA
 </td>
 <td></td>
 <td> </td>
-<td>Rs.   </td>
+<td>Rs.   <input type="Number" ng-model="nineteen" value="{{getNineteen()}}"/></td>
 </tr>
 <tr>
 <td colspan="5" align="center"><i>Verification</i></td>
