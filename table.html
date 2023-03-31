@@ -224,7 +224,8 @@ input,input:hover,input:focus,input:focus-visible
 				$scope.taxAmount = 125000 + 0.25 * ($scope.twelve - 1250000)
 			else
 				$scope.taxAmount = 187500 + 0.30 * ($scope.twelve - 1500000)
-			return $scope.taxAmount
+			 
+			return $scope.taxAmount = Math.floor($scope.taxAmount)
 		}
 
 		$scope.fourteen = 0
@@ -233,8 +234,9 @@ input,input:hover,input:focus,input:focus-visible
 
 		// get number 17, 13+15+16-14
 		$scope.getSeventeen = () =>{
-			$scope.seventeen = $scope.taxAmount + $scope.fourteen + $scope.fifteen + $scope.sixteen
-			return $scope.seventeen 
+			$scope.seventeen = $scope.taxAmount + $scope.fifteen + $scope.sixteen - $scope.fourteen
+			return $scope.seventeen < 0 ? $scope.seventeen = 0 : $scope.seventeen = $scope.seventeen
+
 		} 
 
 		$scope.eighteen = 0 
@@ -242,8 +244,9 @@ input,input:hover,input:focus,input:focus-visible
 		// get number 19, 17-18
 		$scope.getNineteen = () =>{
 			$scope.nineteen = $scope.seventeen - $scope.eighteen
-			return $scope.nineteen
+			return $scope.nineteen < 0 ? $scope.nineteen = 0 : $scope.nineteen = $scope.nineteen
 		} 
+
 	})
 </script>
 
